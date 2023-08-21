@@ -6,9 +6,6 @@ ISO_URL?="https://stylus-spectro.s3.us-west-2.amazonaws.com/v3.2.1/stylus-v3.2.1
 ISO_NAME= $(shell basename $(ISO_URL) .iso)
 EMBED?="true"
 
-PALETTE_ENDPOINT?=""
-REGISTRATION_URL?=""
-EDGE_HOST_TOKEN?=""
 DISK_SIZE?="80000M"
 
 define run
@@ -28,7 +25,7 @@ images-dir:
 	mkdir -p images
 
 docker-build:
-	docker build \
+	docker build --no-cache \
 		--build-arg EMBED=$(EMBED) \
 		--build-arg ISO_URL=$(ISO_URL) \
 		--build-arg DISK_SIZE=$(DISK_SIZE) \
